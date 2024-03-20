@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Coding Challenge 3
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                background-color: #FF95CF;
+            }
+
+            div {
+                background-color: white;
+                width: 300px;
+                height: 30px;
+                text-align: center;
+            }
+
+            table {
+                border-collapse: collapse;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 10px;
+                width: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1> Name List </h1>
+
+       <table id="table">
+        <thead>	   
+        <tr>
+            <th> First Name</th>
+            <th> Middle Name</th>
+            <th> Last Name</th>
+        </tr>
+		<thead>
+		<tbody id="nameList"></tbody>
+       </table> </br>
+	   
+       <button onclick="addName()"> Add Name</button>
+	   
+        <script>
+            function addName(){
+			var name = prompt("Enter name:");
+			
+			const nameParts = name.split(",");
+			
+			if(nameParts.length < 3){
+			alert("Please enter a name >:(");
+			return;
+			}
+			
+			const first = nameParts[0].trim();
+			const middle = nameParts[1].trim();
+			const last = nameParts[2].trim();
+			
+			const tableRow = document.createElement("tr");
+			
+			var firstCell = document.createElement("td");
+			firstCell.innerHTML = first;
+			var middleCell = document.createElement("td");
+			middleCell.innerHTML = middle;
+			var lastCell = document.createElement("td");
+			lastCell.innerHTML = last;
+			
+			tableRow.appendChild(firstCell);
+			tableRow.appendChild(middleCell);
+			tableRow.appendChild(lastCell);
+			
+			const nameList = document.getElementById("nameList");
+			
+			nameList.appendChild(tableRow);
+            }
+        </script>
+    </body>
+</html>

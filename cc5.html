@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Coding Challenge 5
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                background-color: #FF95CF;
+            }
+        </style>
+    </head>
+    <body>
+        <h1> Modified FLAMES </h1>
+
+        <p> Enter two names you want to match: </p>
+		<input type="text" id="name1" placeholder="Name"> <br> <br>
+		<input type="text" id="name2" placeholder="Another Name"> <br> <br>
+		<button onclick="flames()">Match Names</button>
+		<br>
+		<h3 id="name"></h3>
+
+        <h4>FLAMES Result:</h4>
+        <h3 id="result"></h3>
+
+
+        <script>
+        function flames() {
+            var name1 = document.getElementById("name1").value.trim();
+            var name2 = document.getElementById("name2").value.trim();
+    
+            document.getElementById("name").textContent = "Names: " + name1 + " & " + name2;
+
+            name1 = name1.replace(/[^a-zA-Z]/g, "").toUpperCase();
+            name2 = name2.replace(/[^a-zA-Z]/g, "").toUpperCase();
+
+            var totalCharacters = countUniqueCharacters(name1 + name2);
+
+            var flames = "FLAMES";
+            var meanings = ["Friends", "Lovers", "Acquaintances", "Marriage", "Enemies", "Sweethearts"];
+
+            var flamesCount = totalCharacters % flames.length;
+
+            document.getElementById("result").innerHTML = "Result: " + meanings[flamesCount];
+        }
+
+        function countUniqueCharacters(str) {
+            var uniqueCharacters = [];
+            for (var i = 0; i < str.length; i++) {
+            if (uniqueCharacters.indexOf(str[i]) === -1) {
+            uniqueCharacters.push(str[i]);
+            }
+            }
+        return uniqueCharacters.length;
+        }
+		
+        </script>
+    </body>
+</html>

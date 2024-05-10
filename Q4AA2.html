@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sign Up</title>
+<style>
+    body {
+        font-family: Georgia, serif;
+        background-color: #f9e5e5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    #signupForm {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    fieldset {
+        margin-bottom: 20px;
+        padding: 50px;
+    }
+    legend {
+        font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-family: Georgia, serif;
+    }
+    input[type="submit"],
+    input[type="reset"] {
+        font-family: Georgia, serif;
+    }
+    input[type="submit"]:hover,
+    input[type="reset"]:hover {
+        background-color: #45a049;
+    }
+    .error {
+        border: 1px solid red;
+    }
+    .success {
+        border: 1px solid #45DA00;
+    }
+    #output {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div id="signupFormContainer">
+    <form id="signupForm">
+        <fieldset>
+            <legend>Let me get to know you! ^^</legend>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" onblur="validateInput(this)" onfocus="validateInput(this)"><br>
+
+            <label for="username">Preferred Username:</label><br>
+            <input type="text" id="username" name="username" onblur="validateInput(this)" onfocus="validateInput(this)"><br>
+
+            <label for="gender">Gender:</label><br>
+            <select id="gender" name="gender" onblur="validateInput(this)" onfocus="validateInput(this)">
+                <option value="">Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="prefer not to mention">Prefer not to mention</option>
+            </select><br>
+
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" onblur="validateInput(this)" onfocus="validateInput(this)"><br>
+
+            <label for="email">Email Address:</label><br>
+            <input type="email" id="email" name="email" onblur="validateInput(this)" onfocus="validateInput(this)"><br>
+
+            <label for="address">Address:</label><br>
+            <textarea id="address" name="address" onblur="validateInput(this)" onfocus="validateInput(this)"></textarea><br>
+
+            <label for="interest">Tell me about yourself!</label><br>
+            <textarea id="interest" name="interest" onblur="validateInput(this)" onfocus="validateInput(this)"></textarea><br>
+
+            <button type="submit" value="Submit form"> Nice to meet you! </button>
+		    <button type="reset" value="Reset" onclick="clearOutput()"> Awe:( Leaving so soon? </button>
+        </fieldset>
+    </form>
+
+    <div id="output"></div>
+</div>
+
+<script>
+    function validateInput(input) {
+        if (input.value === "" || (input.tagName === "SELECT" && input.value === "")) {
+            input.classList.add("error");
+            input.classList.remove("success");
+        } else {
+            input.classList.remove("error");
+            input.classList.add("success");
+        }
+    }
+	
+	function clearOutput() {
+        document.getElementById("output").innerHTML = "";
+    }
+
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var formData = new FormData(this);
+        var outputDiv = document.getElementById("output");
+        outputDiv.innerHTML = "<h2>Here's what I know about you! ^^</h2>";
+        for (var pair of formData.entries()) {
+            outputDiv.innerHTML += "<strong>" + pair[0] + ":</strong> " + pair[1] + "<br>";
+        }
+    });
+</script>
+
+</body>
+</html>
